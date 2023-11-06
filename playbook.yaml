@@ -38,3 +38,23 @@
     - name: Install Docker Module for Python
       pip:
         name: docker
+
+    - name: Add Kubernetes APT repository
+      apt_repository:
+        repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+        filename: kubernetes
+    
+    - name: Add kubectl GPG apt key
+      uri:
+        url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key 
+    
+    - name: Install Kubernetes components
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - kubelet
+        - kubeadm
+        - kubectl
+
