@@ -1,9 +1,3 @@
-resource "kubernetes_namespace" "example" {
-  metadata {
-    name = "timelog2"
-  }
-}
-
 resource "kubernetes_deployment" "example" {
   metadata {
     name = "terraform-example"
