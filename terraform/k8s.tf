@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "example" {
   metadata {
-    name = "k8s-ns-by-tf"
+    name = "Timelog2"
   }
 }
 
@@ -10,7 +10,7 @@ resource "kubernetes_deployment" "example" {
     labels = {
       test = "TimeLog2"
     }
-    namespace = "k8s-ns-by-tf"
+    namespace = "Timelog2"
   }
 
   spec {
@@ -31,8 +31,8 @@ resource "kubernetes_deployment" "example" {
 
       spec {
         container {
-          image = "nginx:1.21.6"
-          name  = "nginx"
+          image = "michalp96/timelog2"
+          name  = "michalp96/timelog2:latest"
 
           resources {
             limits = {
@@ -44,8 +44,28 @@ resource "kubernetes_deployment" "example" {
               memory = "50Mi"
             }
           }
+          port {
+            container_port = 3000
+          }
         }
       }
     }
+  }
+}
+
+resource "kubernetes_service" "example" {
+  metadata {
+    name = "timelog2-service"
+  }
+  spec {
+    selector = {
+      app = timelog2-service
+    }
+    port {
+      port        = 80
+      target_port = 3000
+    }
+
+    type = "LoadBalancer"
   }
 }
