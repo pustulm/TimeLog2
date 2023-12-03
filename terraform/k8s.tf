@@ -25,7 +25,7 @@ resource "kubernetes_deployment" "example" {
       spec {
         container {
           image = "michalp96/timelog2"
-          name  = "michalp96/timelog2:latest"
+          name  = "timelog2"
 
           resources {
             limits = {
