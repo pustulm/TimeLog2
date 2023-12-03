@@ -59,7 +59,7 @@ resource "kubernetes_service" "example" {
   }
   spec {
     selector = {
-      app = timelog2
+      app = "timelog2"
     }
     port {
       port        = 80
