@@ -1,10 +1,10 @@
-resource "kubernetes_namespace" "Timelog2" {
+resource "kubernetes_namespace" "example" {
   metadata {
     name = "timelog2"
   }
 }
 
-resource "kubernetes_deployment" "Timelog2" {
+resource "kubernetes_deployment" "example" {
   metadata {
     name = "terraform-example"
     labels = {
@@ -53,7 +53,7 @@ resource "kubernetes_deployment" "Timelog2" {
   }
 }
 
-resource "kubernetes_service" "Timelog2" {
+resource "kubernetes_service" "example" {
   metadata {
     name = "timelog2-service"
   }
