@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "example" {
   metadata {
-    name = "Timelog2"
+    name = "timelog2"
   }
 }
 
@@ -59,7 +59,7 @@ resource "kubernetes_service" "example" {
   }
   spec {
     selector = {
-      app = timelog2-service
+      app = timelog2
     }
     port {
       port        = 80
