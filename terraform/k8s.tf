@@ -8,9 +8,8 @@ resource "kubernetes_deployment" "example" {
   metadata {
     name = "terraform-example"
     labels = {
-      test = "TimeLog2"
+      test = "MyTimeLog2"
     }
-    namespace = "Timelog2"
   }
 
   spec {
