@@ -45,20 +45,3 @@ resource "kubernetes_deployment" "example" {
     }
   }
 }
-
-resource "kubernetes_service" "example" {
-  metadata {
-    name = "serviceTimelog2"
-  }
-  spec {
-    selector = {
-      app = "timelog2"
-    }
-    port {
-      port        = 80
-      target_port = 3000
-    }
-
-    type = "LoadBalancer"
-  }
-}
