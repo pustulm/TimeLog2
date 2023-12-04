@@ -55,6 +55,7 @@ resource "kubernetes_deployment" "timelog2" {
 resource "kubernetes_service" "timelog2svc" {
   metadata {
     name = "timelog2svc"
+    namespace = kubernetes_namespace.timelog2test.metadata.0.name
   }
   spec {
     selector = {
