@@ -60,7 +60,6 @@ resource "kubernetes_service" "timelog2svc" {
     selector = {
       app = kubernetes_namespace.timelog2.metadata.0.name
     }
-    session_affinity = "ClientIP"
     port {
       port        = 80
       target_port = 3000
