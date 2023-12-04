@@ -1,6 +1,12 @@
+resource "kubernetes_namespace" "timelog2" {
+    metadata {
+        name = "timelog2"
+    }
+}
+
 resource "kubernetes_deployment" "example" {
   metadata {
-    name = "terraform-example"
+    name = "terraform-timelog2"
     labels = {
       test = "MyTimeLog2"
     }
@@ -24,7 +30,7 @@ resource "kubernetes_deployment" "example" {
 
       spec {
         container {
-          image = "michalp96/timelog2"
+          image = "michalp96/timelog2:latest"
           name  = "timelog2"
 
           resources {
