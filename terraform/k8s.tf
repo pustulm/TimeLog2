@@ -1,10 +1,10 @@
 resource "kubernetes_namespace" "timelog2" {
     metadata {
-        name = "timelog2"
+        name = "timelog2test"
     }
 }
 
-resource "kubernetes_deployment" "example" {
+resource "kubernetes_deployment" "timelog2" {
   metadata {
     name = "terraform-timelog2"
     labels = {
@@ -49,5 +49,23 @@ resource "kubernetes_deployment" "example" {
         }
       }
     }
+  }
+}
+
+resource "kubernetes_service" "timelog2svc" {
+  metadata {
+    name = "timelog2svc"
+  }
+  spec {
+    selector = {
+      app = kubernetes_namespace.timelog2.metadata.0.name
+    }
+    session_affinity = "ClientIP"
+    port {
+      port        = 80
+      target_port = 3000
+    }
+
+    type = "LoadBalancer"
   }
 }
