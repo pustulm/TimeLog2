@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "timelog2" {
+resource "kubernetes_namespace" "timelog2test" {
     metadata {
         name = "timelog2test"
     }
@@ -58,7 +58,7 @@ resource "kubernetes_service" "timelog2svc" {
   }
   spec {
     selector = {
-      app = kubernetes_namespace.timelog2test.metadata.0.name
+      app = kubernetes_deployment.timelog2.spec.0.template.0.metadata.0.labels.app
     }
     port {
       port        = 80
