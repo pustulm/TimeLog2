@@ -58,7 +58,7 @@ resource "kubernetes_service" "timelog2svc" {
   }
   spec {
     selector = {
-      app = kubernetes_namespace.timelog2.metadata.0.name
+      app = kubernetes_namespace.timelog2test.metadata.0.name
     }
     port {
       port        = 80
