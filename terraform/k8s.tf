@@ -8,7 +8,7 @@ resource "kubernetes_deployment" "timelog2" {
   metadata {
     name = "terraform-timelog2"
     labels = {
-      test = "MyTimeLog2"
+      app = "MyTimeLog2"
     }
   }
 
@@ -17,14 +17,14 @@ resource "kubernetes_deployment" "timelog2" {
 
     selector {
       match_labels = {
-        test = "TimeLog2"
+        app = "TimeLog2"
       }
     }
 
     template {
       metadata {
         labels = {
-          test = "TimeLog2"
+          app = "TimeLog2"
         }
       }
 
