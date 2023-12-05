@@ -68,4 +68,5 @@ resource "kubernetes_service" "timelog2svc" {
     }
     type = "LoadBalancer"
   }
+  depends_on = [ kubernetes_deployment.timelog2 ]
 }
