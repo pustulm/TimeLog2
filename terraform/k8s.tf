@@ -11,10 +11,9 @@ resource "kubernetes_deployment" "timelog2" {
       app = "timeLog2"
     }
   }
-
   spec {
     replicas = 2
-
+    
     selector {
       match_labels = {
         app = "TimeLog2"
@@ -32,7 +31,7 @@ resource "kubernetes_deployment" "timelog2" {
         container {
           image = "michalp96/timelog2:latest"
           name  = "timelog2"
-
+          
           resources {
             limits = {
               cpu    = "0.5"
@@ -76,10 +75,14 @@ resource "kubernetes_endpoints" "timelog2endpoints" {
   }
 
   subset {
-    address {
-      ip = kubernetes_deployment.timelog2.status[0].pod_ip
+   address {
+      ip = "10.0.0.4"
     }
 
+    address {
+      ip = "10.0.0.5"
+    }
+    
     port {
       port     = 3000
       name     = "http"
