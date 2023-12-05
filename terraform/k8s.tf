@@ -69,18 +69,14 @@ resource "kubernetes_service" "timelog2svc" {
 }
 
 
-resource "kubernetes_endpoints" "timelog2endpoints" {
+resource "kubernetes_endpoints" "timelog2endpoints1" {
   metadata {
-    name = kubernetes_service.timelog2svc.metadata[0].name
+    name = "timelogendpoints"
   }
 
   subset {
    address {
-      ip = "10.0.0.4"
-    }
-
-    address {
-      ip = "10.0.0.5"
+      ip = kubernetes_deployment.timelog2.spec.0.container.status.pod_ip
     }
     
     port {
