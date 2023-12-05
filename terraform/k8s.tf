@@ -64,26 +64,9 @@ resource "kubernetes_service" "timelog2svc" {
       target_port = 3000
     }
     type = "LoadBalancer"
+
+    external_traffic_policy = "Local"
   }
   depends_on = [ kubernetes_deployment.timelog2 ]
-}
-
-
-resource "kubernetes_endpoints" "timelog2endpoints1" {
-  metadata {
-    name = "timelogendpoints"
-  }
-
-  subset {
-   address {
-      ip = kubernetes_deployment.timelog2.spec.0.container.status.pod_ip
-    }
-    
-    port {
-      port     = 3000
-      name     = "http"
-      protocol = "TCP"
-    }
-  }
-  depends_on = [ kubernetes_service.timelog2svc ]
+  
 }
