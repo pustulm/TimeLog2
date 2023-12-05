@@ -8,7 +8,7 @@ resource "kubernetes_deployment" "timelog2" {
   metadata {
     name = "terraform-timelog2"
     labels = {
-      app = "MyTimeLog2"
+      app = "timeLog2"
     }
   }
 
@@ -59,11 +59,12 @@ resource "kubernetes_service" "timelog2svc" {
   }
   spec {
     selector = {
-      app = kubernetes_deployment.timelog2.spec.0.template.0.metadata.0.labels.app
+      app = "Timelog2"
     }
     port {
       port        = 80
       target_port = 3000
     }
+    type = "LoadBalancer"
   }
 }
