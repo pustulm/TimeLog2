@@ -60,10 +60,9 @@ resource "kubernetes_service" "timelog2svc" {
     selector = {
       app = kubernetes_deployment.timelog2.metadata.0.labels.app
     }
-    session_affinity = "ClientIP"
     port {
-      port        = 80
-      target_port = 3000
+      port        = 3000
+      target_port = 80
     }
     type = "LoadBalancer"
   }
