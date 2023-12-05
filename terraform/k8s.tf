@@ -62,7 +62,7 @@ resource "kubernetes_service" "timelog2svc" {
     }
     port {
       port        = 3000
-      target_port = 80
+      target_port = 3000
     }
     type = "LoadBalancer"
   }
