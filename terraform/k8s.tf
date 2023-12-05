@@ -68,3 +68,23 @@ resource "kubernetes_service" "timelog2svc" {
   }
   depends_on = [ kubernetes_deployment.timelog2 ]
 }
+
+
+resource "kubernetes_endpoints" "timelog2endpoints" {
+  metadata {
+    name = kubernetes_service.timelog2svc.metadata[0].name
+  }
+
+  subset {
+    address {
+      ip = kubernetes_deployment.timelog2.status[0].pod_ip
+    }
+
+    port {
+      port     = 3000
+      name     = "http"
+      protocol = "TCP"
+    }
+  }
+  depends_on = [ kubernetes_service.timelog2svc ]
+}
