@@ -57,15 +57,13 @@ resource "kubernetes_service" "timelog2svc" {
   }
   spec {
     selector = {
-      app = kubernetes_deployment.timelog2.metadata.0.labels.app
+      app = kubernetes_deployment.timelog2.spec.0.template.0.spec.0.name
     }
     port {
       port        = 3000
       target_port = 3000
     }
     type = "LoadBalancer"
-
-    external_traffic_policy = "Local"
   }
   depends_on = [ kubernetes_deployment.timelog2 ]
   
