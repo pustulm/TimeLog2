@@ -57,7 +57,7 @@ resource "kubernetes_service" "timelog2svc" {
   }
   spec {
     selector = {
-      app = kubernetes_deployment.timelog2.spec.0.template.0.spec.0.name
+      app = kubernetes_deployment.timelog2.spec.0.template.0.spec.0.container.0.name
     }
     port {
       port        = 3000
