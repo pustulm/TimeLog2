@@ -34,3 +34,9 @@ jobs:
       name: start minikube
       id: minikube
       uses: medyagh/setup-minikube@master
+
+    - name: Install Kubectl tool for GitHub Actions
+      uses: Azure/setup-kubectl@v3
+      
+    - name: Setup Terraform CLI
+      uses: hashicorp/setup-terraform@v2.0.2
