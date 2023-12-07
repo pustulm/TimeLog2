@@ -30,3 +30,7 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/timelog2:latest
+    -
+      name: start minikube
+      id: minikube
+      uses: medyagh/setup-minikube@master
