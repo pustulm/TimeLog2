@@ -40,3 +40,4 @@ jobs:
       
     - name: Setup Terraform CLI
       uses: hashicorp/setup-terraform@v2.0.2
+
