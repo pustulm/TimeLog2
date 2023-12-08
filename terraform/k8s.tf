@@ -22,6 +22,7 @@ resource "kubernetes_pod" "timelog2" {
       }
     }
     volume {
+      name = "nginx-volume"
       config_map {
         name = "nginx-config"
       }
