@@ -30,7 +30,7 @@ resource "kubernetes_service" "timelog2svc" {
   }
   spec {
     selector = {
-      app = kubernetes_pod.example.metadata.0.labels.app
+      app = kubernetes_pod.timelog2.metadata.0.labels.app
     }
     port {
       port        = 3000
