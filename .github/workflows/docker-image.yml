@@ -5,14 +5,6 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-    
-  workflow_dispatch:
-    inputs:
-      tfpath:
-        description: 'TF Code Path'     
-        required: false
-        default: 'kubernetes'
-
 
 jobs:
 
@@ -38,54 +30,14 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/timelog2:latest
+    -
+      name: start minikube
+      id: minikube
+      uses: medyagh/setup-minikube@master
 
-    - 
-      name: Checkout Code
-      uses: actions/checkout@v2.5.0
-    
-    -   
-      name: Install Minikube for GitHub Actions
-      uses: medyagh/setup-minikube@v0.0.13
-      
-    - 
-      name: Install Kubectl tool for GitHub Actions
+    - name: Install Kubectl tool for GitHub Actions
       uses: Azure/setup-kubectl@v3
-
-    - 
-      name: Setup Terraform CLI
+      
+    - name: Setup Terraform CLI
       uses: hashicorp/setup-terraform@v2.0.2
 
-    - 
-      name: Terraform init and velidate and plan
-      run: |
-        echo `pwd`
-        echo "tfpath ${{ github.event.inputs.tfpath }}"
-        echo "** Running Terraform Init**"
-        terraform init
-        
-        echo "** Running Terraform Validate**"
-        terraform validate
-        
-        echo "** Running Terraform Plan**"
-        terraform plan
-      working-directory: ${{ github.event.inputs.tfpath }}
-
-    - 
-      name: Terraform Apply
-      run: |
-        echo "** Running Terraform Apply**"
-        terraform apply -auto-approve
-      working-directory: ${{ github.event.inputs.tfpath }}
-
-    - 
-      name: Verify Kubernetes Deployment
-      run: |
-        echo "** kubectl get deployment **"
-        kubectl get deployment -n ns-created-by-tf
-  
-    - 
-      name: Terraform Destroy
-      run: |
-        echo "** Running Terraform Destroy**"
-        terraform plan -destroy
-      working-directory: ${{ github.event.inputs.tfpath }}
