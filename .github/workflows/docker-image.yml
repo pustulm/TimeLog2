@@ -39,7 +39,6 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/timelog2:latest
     if:  ${{ inputs.tfpath }} 
-    steps:
     - name: Checkout Code
       uses: actions/checkout@v2.5.0
     
