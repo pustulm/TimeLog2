@@ -12,13 +12,18 @@ resource "kubernetes_pod" "timelog2" {
     }
   }
 
-  spec {
+  spec {   
     container {
       image = "michalp96/timelog2:latest"
       name  = "timelog2"
       
       port {
         container_port = 3000
+      }
+    }
+    volume {
+      config_map {
+        name = "nginx-config"
       }
     }
   }
@@ -33,7 +38,7 @@ resource "kubernetes_service" "timelog2svc" {
       app = kubernetes_pod.timelog2.metadata.0.labels.app
     }
     port {
-      port        = 3000
+      port        = 80
       target_port = 3000
     }
     type = "LoadBalancer"
