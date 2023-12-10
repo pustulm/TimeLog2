@@ -20,6 +20,11 @@ resource "kubernetes_pod" "timelog2" {
       port {
         container_port = 3000
       }
+
+      volume_mount {
+        name = "nginx-config-volume"
+        mount_path = "/etc/nginx/conf.d"
+      }
     }
     volume {
       name = "nginx-volume"
