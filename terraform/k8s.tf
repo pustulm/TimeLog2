@@ -22,7 +22,7 @@ resource "kubernetes_pod" "timelog2" {
       }
 
       volume_mount {
-        name = "nginx-config-volume"
+        name = "nginx-volume"
         mount_path = "/etc/nginx/conf.d"
       }
     }
