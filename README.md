@@ -1,7 +1,7 @@
 # DEPLOYMENT OF TIME LOG JS APP
 
 ### **- OVERVIEW OF A PROJECT -** 
-The main goal of this repo is to make a usage of Terraform and Github Actions for a simple Time Log App. We'll use VSC as our IDE.
+The main goal of this repo is to make a usage of Terraform and Github Actions for a simple Time Log App. I'll use VSC as IDE.
 
 ### **-TECHNOLOGIES-**
 
